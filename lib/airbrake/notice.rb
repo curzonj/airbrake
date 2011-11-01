@@ -159,7 +159,10 @@ module Airbrake
         notice.tag!("server-environment") do |env|
           env.tag!("project-root", project_root)
           env.tag!("environment-name", environment_name)
-          env.tag!("hostname", hostname)
+
+          # Hide this until we can update to the latest
+          # hoptoad API
+          #env.tag!("hostname", hostname)
         end
       end
       xml.to_s
