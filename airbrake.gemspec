@@ -8,8 +8,11 @@ Gem::Specification.new do |s|
   s.summary     = %q{Send your application errors to our hosted service and reclaim your inbox.}
 
   s.require_paths = ["lib"]
-  s.files         = `git ls-files`.split("\n")
-  s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
+
+  # --git-dir makes this friendly to bundler git gem statements
+  git = "git --git-dir=#{File.dirname(__FILE__)}/.git ls-files"
+  s.files         = `#{git}`.split("\n")
+  s.test_files    = `#{git} -- {test,spec,features}/*`.split("\n")
 
   s.add_runtime_dependency("builder")
   s.add_runtime_dependency("activesupport")
